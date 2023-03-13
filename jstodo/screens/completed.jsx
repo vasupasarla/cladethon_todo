@@ -37,9 +37,21 @@ export default function Completed({navigation}) {
    <FlatList
         data={data}
         renderItem={({item}) => (
-        <View style={{backgroundColor:"grey"}}>
-          <Text style={{color:"white"}}> {item.title} {"   "}  {item.date}</Text>
+          <View>
+      <View style={{backgroundColor:"grey", height:"auto", width:"100%", flex:1, flexDirection:"row", paddingLeft:10, paddingRight: 10}}>
+        <View style={{flex:4,margin:5,justifyContent:"center"}}>
+          <Text style={{ color:"white", fontSize:20}}>{item.title}</Text>
         </View>
+
+        <View style={{flex:1, alignItems:"flex-end", justifyContent:"center"}}>
+          <Icon size={30} name={item.isBookmarked ? "star" : "star-o"} color={item.isBookmarked ? "yellow" : "white"} />
+        </View>
+    </View>
+
+    <View style={{alignItems:"flex-end", justifyContent:"center", backgroundColor:"grey", color:"white"}}> 
+    <Text> {item.date} </Text>
+  </View>
+  </View>
       )}
       ItemSeparatorComponent={
         <View style={{height:1}}></View>

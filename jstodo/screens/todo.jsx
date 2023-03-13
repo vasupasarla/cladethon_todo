@@ -42,7 +42,7 @@ export default function Todo({navigation}) {
     <View style={styles.v2}>
       <Text style={styles.v2title}> Title </Text>
       <View style={styles.border}>
-      <TextInput onChangeText={tit=> setTitle(tit)} numberOfLines={5} color="black" multiline placeholder='todo' placeholderTextColor={"grey"}></TextInput>
+      <TextInput maxLength={200} onChangeText={tit=> setTitle(tit)} numberOfLines={3} color="black" multiline placeholder='todo' placeholderTextColor={"grey"}></TextInput>
       </View>
     </View>
 
@@ -63,13 +63,7 @@ export default function Todo({navigation}) {
     </View>
     <View style={styles.btn}>
         <Button color="black" onPress={()=> {
-          //let isBookmarked=0;
-          //console.log("sssssssssssssss----------",selectedDate)
-          //data.push({id:uuid.v4(), title:title, date: selectedDate, book:isBookmarked})
-          //setData([...data, {id:uuid.v4(), title:title, date: selectedDate, book:isBookmarked}]);
-
-          
-      //-----------------strftime('%Y/%m/%Y', selectedDate
+       if(title.length>0) {
       db.transaction(function (tx) {
         tx.executeSql(
           'INSERT INTO todolist (id, title, date, isBookmarked, isCompleted) VALUES (?,?,?,?,?)',
@@ -84,10 +78,10 @@ export default function Todo({navigation}) {
         );
       });
 
-      //--------------------
-
-          navigation.navigate("Welcome")
+          navigation.navigate("Welcome");
+    }
           }} title="Done"/>
+      
     </View>
     </View>
     </SafeAreaView>

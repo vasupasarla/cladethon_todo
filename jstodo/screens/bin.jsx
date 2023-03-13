@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {FlatList, Button, View, Text, StyleSheet, Pressable, SafeAreaView, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
 import EIcon from 'react-native-vector-icons/EvilIcons';
+import Binitemz from './bintemz';
 
 import { openDatabase } from 'react-native-sqlite-storage';
 const bindb = openDatabase({ name: 'bin.db' });
@@ -22,8 +22,8 @@ export default function Bin({navigation}) {
     useEffect(() => {
       bindb.transaction(tx => {
         tx.executeSql(
-            'CREATE TABLE IF NOT EXISTS bintodolist(id VARCHAR(40),title VARCHAR(250), date DATE, isBookmarked INTEGER)',     );
-      }, null, null, null);
+            'CREATE TABLE IF NOT EXISTS bintodolist(id VARCHAR(40),title VARCHAR(250), date DATE,  isBookmarked INTEGER, isCompleted INTEGER)',     );
+      }, []);
       fetchData();
     }, [data]);
   
@@ -63,11 +63,12 @@ export default function Bin({navigation}) {
    <FlatList
         data={data}
         renderItem={({item}) => (
-        <View style={{backgroundColor:"grey", height:"auto", width:"100%"}}>
-            <Text style={{color:"white"}}>
-                {item.title}{"   "}{item.date}
-            </Text>
-        </View>
+          <Binitemz data={item}/>
+        // <View style={{backgroundColor:"grey", height:"auto", width:"100%"}}>
+        //     <Text style={{color:"white"}}>
+        //         {item.title}{"   "}{item.date}
+        //     </Text>
+        // </View>
         )}
         ItemSeparatorComponent={
           <View style={{height:1}}></View>

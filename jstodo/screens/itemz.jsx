@@ -18,18 +18,18 @@ export default function Itemz({data}) {
   useEffect(()=> {
     
     bindb.executeSql(
-      'CREATE TABLE IF NOT EXISTS bintodolist(id VARCHAR(40),title VARCHAR(250), date DATE, isBookmarked INTEGER)',
+      'CREATE TABLE IF NOT EXISTS bintodolist(id VARCHAR(40),title VARCHAR(250), date DATE, isBookmarked INTEGER, isCompleted INTEGER)',
        [],
       () => { console.log('Table created successfully'); },
       error => { console.log(`SQL Error: ${error}`); }
     );
   }, []);
   
-function del(id, title, date) {
+function del(id, title, date, isBookmarked, isCompleted) {
   bindb.transaction(function (tx) {
     tx.executeSql(
-      'INSERT INTO bintodolist (id, title, date) VALUES (?,?,?)',
-      [id, title, date],
+      'INSERT INTO bintodolist (id, title, date, isBookmarked, isCompleted) VALUES (?,?,?,?,?)',
+      [id, title, date, isBookmarked, isCompleted],
       (tx, results) => {
         console.log('ttrr Results', results.rowsAffected);
       },
@@ -99,7 +99,7 @@ function leftActions() {
 
   return (
     <Swipeable leftThreshold={125} leftActionActivationDistance={126}
-     renderLeftActions={leftActions} onSwipeableLeftOpen={()=> del(data.id, data.title, data.date)}> 
+     renderLeftActions={leftActions} onSwipeableLeftOpen={()=> del(data.id, data.title, data.date, data.isBookmarked, data.isCompleted)}> 
         <View style={{flex:1, flexDirection:"row", backgroundColor:"grey", height:"auto", width:"100%", paddingLeft:10, paddingRight: 10}}>
             <View style={{justifyContent:"center", flex:1}}>
             <BouncyCheckbox
@@ -115,13 +115,16 @@ function leftActions() {
             </View>
             <View style={{flex:3}}>
                 <Text style={{fontSize:20, color:"white", margin:5}}>
-                  {data.title}{"   "}
-                  {data.date}
+                  {data.title}
                 </Text>
             </View>
             <Pressable onPress={()=> {bookm(data.id)}}  style={{flex:1,height:"auto",justifyContent:"center", alignItems:"flex-end" }}>
               <Icon size={30} name={book ? "star" : "star-o"} color={book ? "yellow" : "white"} />
             </Pressable>
+        </View>
+        
+        <View style={{alignItems:"flex-end", justifyContent:"center", backgroundColor:"grey", color:"white"}}> 
+          <Text> {data.date} </Text>
         </View>
  </Swipeable>  
     

@@ -36,10 +36,10 @@ export default function Welcome() {
   return (
       <Drawer.Navigator initialRouteName="Todolist">
         <Drawer.Screen name="Todolist" component={Todolist} />
-        <Drawer.Screen name="About" component={About} />
         <Drawer.Screen name="Bookmark" component={Bookmark} />
         <Drawer.Screen name="Completed" component={Completed} />
         <Drawer.Screen name="Bin" component={Bin} />
+        <Drawer.Screen name="About" component={About} />
         
       </Drawer.Navigator>
    

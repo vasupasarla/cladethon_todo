@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { ToastAndroid ,FlatList, Button, View, Text, StyleSheet, Pressable, SafeAreaView, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
+import { FlatList, Button, View, Text, StyleSheet, Pressable, SafeAreaView, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
 import Itemz from "./itemz";
 
 import { openDatabase } from 'react-native-sqlite-storage';
