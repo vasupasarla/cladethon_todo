@@ -72,8 +72,8 @@ export default function Todo({navigation}) {
       //-----------------strftime('%Y/%m/%Y', selectedDate
       db.transaction(function (tx) {
         tx.executeSql(
-          'INSERT INTO todolist (id, title, date, isBookmarked) VALUES (?,?,?,?)',
-          [uuid.v4(), title, selectedDate , 0],
+          'INSERT INTO todolist (id, title, date, isBookmarked, isCompleted) VALUES (?,?,?,?,?)',
+          [uuid.v4(), title, selectedDate , 0, 0],
           (tx, results) => {
             console.log('ttrr Results', results.rowsAffected);
           

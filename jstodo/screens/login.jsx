@@ -92,8 +92,10 @@ export default function Login({navigation}) {
     setPre(true);
     if(lg?.length<4)
     setErr("Please enter 4 digit pin");
-    else if(lg===pin?.pin) 
+    else if(lg===pin?.pin) {
+      setLg("");
       navigation.navigate('Welcome');
+    }
     else
       setErr("Wrong Password");
   }
