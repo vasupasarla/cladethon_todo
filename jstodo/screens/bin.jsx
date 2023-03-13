@@ -51,12 +51,20 @@ export default function Bin({navigation}) {
   return (
     
     <SafeAreaView>
+    <Pressable style={{backgroundColor:"yellow", flexDirection:"row"}}>
+      <TouchableNativeFeedback onPress={del}>
+        <View style={{alignItems:"center", justifyContent:"center", flex:1}}>
+          <Text style={{color:"black", fontSize:20}}> Empty Bin <EIcon name='trash' size={30} color='black'/>  </Text>
+          
+        </View>
+      </TouchableNativeFeedback>
+    </Pressable>
+  
    <FlatList
         data={data}
         renderItem={({item}) => (
-        <View style={{backgroundColor:"grey", height:100, width:"100%"}}>
+        <View style={{backgroundColor:"grey", height:"auto", width:"100%"}}>
             <Text style={{color:"white"}}>
-                hello
                 {item.title}{"   "}{item.date}
             </Text>
         </View>
@@ -68,15 +76,6 @@ export default function Bin({navigation}) {
         keyExtractor={(item, index) => item.id}
       />
     
-
-    <Pressable >
-    <TouchableNativeFeedback onPress={del}>
-    <View style={styles.ic}>
-  <EIcon name='trash' size={30} color='black'/>  
-</View>
-</TouchableNativeFeedback>
-    </Pressable>
-  
    </SafeAreaView>
   
   )

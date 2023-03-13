@@ -42,7 +42,7 @@ function Todolist({navigation}) {
     
   return (
     
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1}}>
    <FlatList
         data={data}
         renderItem={({item}) => (
@@ -56,15 +56,16 @@ function Todolist({navigation}) {
         // columnWrapperStyle={{ marginHorizontal: 1 }}
         extraData={true}
         keyExtractor={(item, index) => item.id}
+        contentContainerStyle={{ paddingBottom: 100 }}
       />
     
 
-    <Pressable >
+    <Pressable style={styles.ft}>
     <TouchableNativeFeedback>
-    <View style={styles.ic}>
-  <Icon onPress={()=> navigation.navigate("Todo")} name='plus' size={30} color='#01a699' style={{position: 'absolute', zIndex: 99}} />  
-</View>
-</TouchableNativeFeedback>
+    <View>
+      <Icon onPress={()=> navigation.navigate("Todo")} name='plus-circle' size={50} color='green'  />  
+    </View>
+    </TouchableNativeFeedback>
     </Pressable>
   
    </SafeAreaView>
@@ -73,20 +74,11 @@ function Todolist({navigation}) {
 }
 
 const styles = StyleSheet.create({
-    ic: {
-        color:"white",
-        position:'static',
-        justifyContent:'center',
-        alignItems:'center',
-        width:50,
-        height:50,
-        backgroundColor:'green',
-        borderRadius:80/2,
-
-        
-        left:313,
-        bottom:10,
-
+ft : {
+  position: 'absolute', 
+  bottom: 20,
+  right:20
+  // float: "bottom"
 }
 });
 
