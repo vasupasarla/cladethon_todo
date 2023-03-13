@@ -1,14 +1,19 @@
 import React , {useEffect, useState} from 'react'
 import {View, Text, TouchableOpacity, Pressable} from "react-native";
 import {Swipeable} from "react-native-gesture-handler";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 import EIcon from 'react-native-vector-icons/EvilIcons';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 import { openDatabase } from 'react-native-sqlite-storage';
+
+
 const db = openDatabase({ name: 'todo.db' });
 const bindb = openDatabase({ name: 'bin.db' });
 
 export default function Itemz({data}) {
   const [book , setBook] = useState(data.isBookmarked);
+  const [comp , setComp] = useState(data.isCompleted);
 
   useEffect(()=> {
     
@@ -58,6 +63,23 @@ function bookm(id) {
     });
 }
 
+function compf(id) {
+  let v = comp ? 0 : 1;
+  setComp(v);
+    db.transaction(tx => {
+      tx.executeSql(
+        'UPDATE todolist SET isCompleted = ? WHERE id = ?',
+        [v, id],
+        (tx, results) => {
+          console.warn('Rows book xxxxxxxxxx:', v, results.rowsAffected);
+        },
+        error => {
+          console.warn("err",error);
+        }
+      );
+    });
+}
+
 
 function leftActions() {
   // style={ {backgroundColor:"green",  justifyContent:"center" }
@@ -78,18 +100,26 @@ function leftActions() {
   return (
     <Swipeable leftThreshold={125} leftActionActivationDistance={126}
      renderLeftActions={leftActions} onSwipeableLeftOpen={()=> del(data.id, data.title, data.date)}> 
-        <View style={{flex:1, flexDirection:"row", backgroundColor:"grey", height:"auto", width:"100%"}}>
-            <View>
-   
+        <View style={{flex:1, flexDirection:"row", backgroundColor:"grey", height:"auto", width:"100%", paddingLeft:10, paddingRight: 10}}>
+            <View style={{justifyContent:"center", flex:1}}>
+            <BouncyCheckbox
+                size={30}
+                isChecked={!!comp}
+                fillColor="green"
+                unfillColor="#FFFFFF"
+                iconStyle={{ borderColor: "white" }}
+                innerIconStyle={{ borderWidth: 2 }}
+                onPress={() => compf(data.id)}
+            />
    
             </View>
-            <View>
-                <Text style={{fontSize:20, color:"white", margin:10}}>
+            <View style={{flex:3}}>
+                <Text style={{fontSize:20, color:"white", margin:5}}>
                   {data.title}{"   "}
                   {data.date}
                 </Text>
             </View>
-            <Pressable onPress={()=> {bookm(data.id)}}  style={{height:"auto",justifyContent:"center", alignItems:"flex-end" }}>
+            <Pressable onPress={()=> {bookm(data.id)}}  style={{flex:1,height:"auto",justifyContent:"center", alignItems:"flex-end" }}>
               <Icon size={30} name={book ? "star" : "star-o"} color={book ? "yellow" : "white"} />
             </Pressable>
         </View>

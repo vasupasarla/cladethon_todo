@@ -41,9 +41,9 @@ export default function Completed({navigation}) {
           <Text style={{color:"white"}}> {item.title} {"   "}  {item.date}</Text>
         </View>
       )}
-        // ItemSeparatorComponent={
-        //   <View style={{height:0}}></View>
-        // }
+      ItemSeparatorComponent={
+        <View style={{height:1}}></View>
+      }
         // contentContainerStyle={{paddingBottom:0}} 
         extraData={true}
         keyExtractor={(item, index) => item.id}
