@@ -28,7 +28,7 @@ function Todolist({navigation}) {
         (tx, results) => {
         let temp=[];
         for(let i=0; i<results.rows.length;++i) temp.push(results.rows.item(i))
-        setData(temp);
+        setData(temp.reverse());
         console.log("data===========",data);
         },
         error => {
