@@ -38,11 +38,9 @@ function Todolist({navigation}) {
   });
 }
 
-
-    
   return (
     
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{flex:1, backgroundColor:"black"}}>
    <FlatList
         data={data}
         renderItem={({item}) => (

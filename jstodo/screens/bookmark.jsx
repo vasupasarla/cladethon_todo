@@ -32,7 +32,7 @@ export default function Completed({ navigation }) {
 
   return (
 
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1, backgroundColor:"black"}}>
       <FlatList
         data={data}
         renderItem={({ item }) => (

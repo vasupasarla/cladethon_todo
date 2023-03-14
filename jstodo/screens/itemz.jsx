@@ -57,7 +57,7 @@ function bookm(id) {
           //console.warn('Rows book xxxxxxxxxx:', v, results.rowsAffected);
         },
         error => {
-          console.warn("err",error);
+          console.log("err",error);
         }
       );
     });
@@ -71,10 +71,10 @@ function compf(id) {
         'UPDATE todolist SET isCompleted = ? WHERE id = ?',
         [v, id],
         (tx, results) => {
-          console.warn('Rows book xxxxxxxxxx:', v, results.rowsAffected);
+          console.log('Rows book xxxxxxxxxx:', v, results.rowsAffected);
         },
         error => {
-          console.warn("err",error);
+          console.log("err",error);
         }
       );
     });
@@ -84,9 +84,9 @@ function compf(id) {
 function leftActions() {
   // style={ {backgroundColor:"green",  justifyContent:"center" }
   return (<View style={{flex:1, height:"auto"}}>
-    <TouchableOpacity style={{backgroundColor:"yellow"}}>
+    <TouchableOpacity style={{backgroundColor:"#eb0722"}}>
       <View style={{justifyContent:"center", height:"100%", width:"100%"}}>
-        <EIcon size={35} color="red" name='trash'/>
+        <EIcon size={35} color="white" name='trash'/>
       </View>
     </TouchableOpacity>
   </View>)

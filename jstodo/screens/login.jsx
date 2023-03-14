@@ -72,21 +72,7 @@ export default function Login({navigation}) {
         <Button
   onPress={() => {
     setRefresh(!refresh);
-    // if(lg?.length===4)
-    // db.transaction(function (tx) {
-    //   tx.executeSql(
-    //     'SELECT pin FROM user',
-    //     [],
-    //     (tx, results) => {
-    //       console.log('Results', results.rows.item(0));
-    //       setPin(results.rows.item(0));
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     },
-    //   );
-    // });
-
+    
     //navigation.navigate('Welcome');  //for testing ..
     console.log("x--------",lg,pin?.pin);
     setPre(true);
@@ -94,6 +80,7 @@ export default function Login({navigation}) {
     setErr("Please enter 4 digit pin");
     else if(lg===pin?.pin) {
       setLg("");
+      setErr("Password Match")
       navigation.navigate('Welcome');
     }
     else
@@ -111,7 +98,6 @@ export default function Login({navigation}) {
     <Text style={{color: (lg===pin?.pin)? "green" : "red",  fontSize:20}}> {(lg?.length<=4 && lg && pre)?err:null} </Text>
     </View>
     
-
 
     <View style={styles.v2}> 
     <Button

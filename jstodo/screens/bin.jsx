@@ -50,11 +50,11 @@ export default function Bin({navigation}) {
     
   return (
     
-    <SafeAreaView>
-    <Pressable style={{backgroundColor:"yellow", flexDirection:"row"}}>
-      <TouchableNativeFeedback onPress={del}>
+    <SafeAreaView style={{flex:1, backgroundColor:"black"}}>
+    <Pressable style={{backgroundColor:"#eb0722", flexDirection:"row" }}>
+      <TouchableNativeFeedback onPress={del} style={{justifyContent:"center"}}>
         <View style={{alignItems:"center", justifyContent:"center", flex:1}}>
-          <Text style={{color:"black", fontSize:20}}> Empty Bin <EIcon name='trash' size={30} color='black'/>  </Text>
+          <Text style={{color:"white", fontSize:20, justifyContent:"center"}}> Click to Empty Bin <EIcon name='trash' size={30} color='white'/>  </Text>
           
         </View>
       </TouchableNativeFeedback>
@@ -82,9 +82,9 @@ export default function Bin({navigation}) {
   )
 }
 
-const styles = StyleSheet.create({
-    ic: {
-        float:"left",
+// const styles = StyleSheet.create({
+//     ic: {
+//         float:"left",
 
-}
-});
+// }
+// });

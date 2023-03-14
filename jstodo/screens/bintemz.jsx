@@ -23,7 +23,6 @@ function leftActions() {
 
    
 function del(id) {
-  console.warn(data)
     bindb.executeSql("DELETE FROM bintodolist WHERE id = ?", [id], ()=> {
       console.log("Deleted");
     }, (error)=> {

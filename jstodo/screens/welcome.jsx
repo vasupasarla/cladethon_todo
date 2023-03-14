@@ -13,7 +13,7 @@ import Bin from "./bin";
 
 function HomeScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{backgroundColor:"#039dfc", flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button
         onPress={() => navigation.navigate('Notifications')}
         title="Go to notifications"
@@ -24,7 +24,7 @@ function HomeScreen({ navigation }) {
 
 function NotificationsScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{backgroundColor:"#039dfc", flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button onPress={() => navigation.goBack()} title="Go back home" />
     </View>
   );
@@ -34,7 +34,22 @@ const Drawer = createDrawerNavigator();
 
 export default function Welcome() {
   return (
-      <Drawer.Navigator initialRouteName="Todolist">
+      <Drawer.Navigator 
+      screenOptions={{
+        drawerStyle: {
+          backgroundColor: 'blue',
+          // width: 240,
+        },
+        drawerContentOptions:{
+          activeTintColor: '#fff', 
+          // /* font color for active screen label */
+          activeBackgroundColor: '#68f', 
+          // /* bg color for active screen */
+          inactiveTintColor: 'grey', 
+          // /* Font color for inactive screens' labels */
+        }
+      }}
+       initialRouteName="Todolist">
         <Drawer.Screen name="Todolist" component={Todolist} />
         <Drawer.Screen name="Bookmark" component={Bookmark} />
         <Drawer.Screen name="Completed" component={Completed} />
